@@ -44,7 +44,7 @@ jobs:
 
       # Step 8: Print environment variable (S3_BUCKET)
       - name: Print S3 Bucket Name
-        run: echo "S3_BUCKET: $S3_BUCKET"  
+        run: echo "S3_BUCKET:$S3_BUCKET"  
 
       # Step 9: Deploy to S3
       - name: Deploy to S3
