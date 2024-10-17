@@ -32,17 +32,16 @@ jobs:
         run: npm run build
         working-directory: ./frontend  # Ensure the build happens in the frontend directory
       
-      # Step 6: Upload build artifacts
-      - name: Upload Build Artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: build
-          path: frontend/build/  # Adjusted path to point to frontend build
+      # Step 6: Install AWS CLI
+      - name: Install AWS CLI
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y awscli
 
       # Step 7: Deploy to S3
       - name: Deploy to S3
         run: |
-          aws s3 sync ./frontend/build s3://S3_BUCKET/ --delete
+          aws s3 sync ./frontend/build s3://$S3_BUCKET/ --delete
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
