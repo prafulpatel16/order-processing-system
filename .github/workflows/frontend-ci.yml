@@ -38,7 +38,15 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y awscli
 
-      # Step 7: Deploy to S3
+       # Step 7: Verify AWS CLI installation
+      - name: Verify AWS CLI
+        run: aws --version    
+
+      # Step 8: Print environment variable (S3_BUCKET)
+      - name: Print S3 Bucket Name
+        run: echo "S3_BUCKET: $S3_BUCKET"  
+
+      # Step 9: Deploy to S3
       - name: Deploy to S3
         run: |
           aws s3 sync ./frontend/build s3://$S3_BUCKET/ --delete
