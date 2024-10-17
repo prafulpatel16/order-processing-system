@@ -1,7 +1,15 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import '@testing-library/jest-dom/extend-expect'; // For better assertion syntax
-import OrderForm from '../OrderForm'; // Adjust the path if needed
+//import '@testing-library/jest-dom/extend-expect'; // For better assertion syntax
+ // Adjust the path if needed
+import '@testing-library/jest-dom';
+import '../OrderForm.css';  // Import CSS for styling
+import App from '../App.js';
+
+
+
+
+
 
 // Mocking the fetch function
 global.fetch = jest.fn(() =>
