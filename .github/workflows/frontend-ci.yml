@@ -32,7 +32,7 @@ jobs:
         run: npm run build
         working-directory: ./frontend  # Ensure the build happens in the frontend directory
       
-      # Step 6: Install AWS CLI
+      # Step 6: Install AWS CLI (ensure AWS CLI is installed in the runner)
       - name: Install AWS CLI
         run: |
           sudo apt-get update
