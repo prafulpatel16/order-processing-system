@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      # Step 1: Checkout the repository
+      # Step 1: Checkout the repository, test
       - uses: actions/checkout@v2
       
       # Step 2: Set up AWS credentials
