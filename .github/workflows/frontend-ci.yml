@@ -31,20 +31,20 @@ jobs:
       - name: Build frontend
         run: npm run build
         working-directory: ./frontend  # Ensure the build happens in the frontend directory
-      
-      # Step 6: Install AWS CLI (ensure AWS CLI is installed in the runner)
+
+      # Step 6: Install AWS CLI
       - name: Install AWS CLI
         run: |
           sudo apt-get update
           sudo apt-get install -y awscli
 
-       # Step 7: Verify AWS CLI installation
+      # Step 7: Verify AWS CLI installation
       - name: Verify AWS CLI
-        run: aws --version    
+        run: aws --version
 
-      # Step 8: Print environment variable (S3_BUCKET)
+      # Step 8: Print S3 Bucket Name (for debugging purposes)
       - name: Print S3 Bucket Name
-        run: echo "S3_BUCKET:$S3_BUCKET"  
+        run: echo "S3_BUCKET:${{ secrets.S3_BUCKET }}"
 
       # Step 9: Deploy to S3
       - name: Deploy to S3
@@ -53,4 +53,4 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          S3_BUCKET: ${{ secrets.S3_BUCKET }}
+          S3_BUCKET: ${{ secrets.S3_BUCKET }}  # This should point to the secret
