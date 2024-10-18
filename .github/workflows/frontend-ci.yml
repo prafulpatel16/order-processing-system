@@ -43,4 +43,4 @@ jobs:
       # Step 6: Deploy to S3
       - name: Deploy to S3
         run: |
-          aws s3 sync ./frontend/build s3://$S3_BUCKET/ --delete
+          aws s3 sync ./frontend/build s3://ordeprocess-frontend/ --delete
