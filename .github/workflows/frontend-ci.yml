@@ -12,42 +12,35 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_REGION: us-east-1
-      S3_BUCKET: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      S3_BUCKET: ${{ secrets.S3_BUCKET }}  # Corrected this line
     steps:
-      # Step 1: Checkout the repository, test
+      # Step 1: Checkout the repository
       - uses: actions/checkout@v2
-
       
-      # Step 3: Set up Node.js environment
+      # Step 2: Set up Node.js environment
       - name: Install Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '14'
       
-      # Step 4: Navigate to frontend directory
-      - name: Change directory to frontend
-        run: cd frontend
-      
-      # Step 5: Install dependencies
+      # Step 3: Install dependencies
       - name: Install dependencies
         run: npm install
-        working-directory: ./frontend  # Ensure npm runs inside the frontend directory
+        working-directory: ./frontend
       
-      # Step 6: Build the frontend
+      # Step 4: Build the frontend
       - name: Build frontend
         run: npm run build
-        working-directory: ./frontend  # Ensure the build happens in the frontend directory
+        working-directory: ./frontend
       
-      # Step 7: Upload build artifacts
+      # Step 5: Upload build artifacts
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: build
-          path: frontend/build/  # Adjusted path to point to frontend build
-
-      # Step 8: Deploy to S3
+          path: frontend/build/
+      
+      # Step 6: Deploy to S3
       - name: Deploy to S3
         run: |
-          aws s3 sync ./frontend/build s3://${{ env.S3_BUCKET }}/ --delete
-        env:
-          S3_BUCKET: ${{ secrets.S3_BUCKET }}
+          aws s3 sync ./frontend/build s3://$S3_BUCKET/ --delete
