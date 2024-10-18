@@ -46,7 +46,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v1
         with:
           role-to-assume: arn:aws:iam::202533534284:role/awsGitHubActionsRole
-          AWS_REGION: us-east-1
+          aws-region: us-east-1
           
    
 
