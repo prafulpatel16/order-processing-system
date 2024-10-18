@@ -17,3 +17,5 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1  # Change this if you need a different region
       # Add your test or other steps here...
+      - name: Check AWS Credentials
+        run: echo "AWS_ACCESS_KEY_ID is set to $AWS_ACCESS_KEY_ID and AWS_REGION is $AWS_REGION"
